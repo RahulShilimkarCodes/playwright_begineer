@@ -36,21 +36,22 @@ test("CSS Locator Test", async ({ page }) => {
   //        Class contains "ai"  --->   p[class*='ai']
 
   await page
-    .locator("div[class='termsofservice']>input#termsofservice")
+    .locator("div[class='terms-of-service']>input#termsofservice")
     .click();
 
   await page.locator("button#checkout").click();
 
   await page.locator("input[value='Checkout as Guest']").click();
 
-  await page.locator("div[class='edit-address']>div:first-child").fill("Virat");
-  await page.locator("div[class='edit-address']>div:nth-child(2)").fill("Kohli");
-  await page.locator("div[class='edit-address']>div:last-child").fill("fax number");
-  await page.locator("div[class='edit-address']>div[class^=in]:nth-child(3)").fill("virat@rcb.com");
-  await page.locator("div[class='edit-address']>div[class^=in]:nth-child(7)").fill("Bangalore");
-  await page.locator("div[class='edit-address']>div[class$=ts]:nth-child(8)").fill("Chinasswamy");
-  await page.locator("div[class='edit-address']>div[class$=ts]:nth-child(10)").fill("01556");
-  await page.locator("div[class='edit-address']>div[class*=put]:nth-child(11)").fill("12356889954");
+  //Playwright only allows .fill() on editable elements like <input>, <textarea>, <select>, or [contenteditable]
+  await page.locator("div[class='edit-address']>div:first-child>input").fill("Virat");
+  await page.locator("div[class='edit-address']>div:nth-child(2)>input").fill("Kohli");
+  await page.locator("div[class='edit-address']>div:last-child>input").fill("fax number");
+  await page.locator("div[class='edit-address']>div[class^=in]:nth-child(3)>input").fill("virat@rcb.com");
+  await page.locator("div[class='edit-address']>div[class^=in]:nth-child(7)>input").fill("Bangalore");
+  await page.locator("div[class='edit-address']>div[class$=ts]:nth-child(8)>input").fill("Chinasswamy");
+  await page.locator("div[class='edit-address']>div[class$=ts]:nth-child(10)>input").fill("01556");
+  await page.locator("div[class='edit-address']>div[class*=put]:nth-child(11)>input").fill("12356889954");
 
 
 
