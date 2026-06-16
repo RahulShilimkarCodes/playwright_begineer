@@ -42,7 +42,8 @@ test("Playwright built in locators demo", async ({ page }) => {
 
   await page.getByPlaceholder("Enter Phone").fill("213233212");
 
-  await page.getByLabel("Male", { exact: true }).click();
+  await page.getByLabel("Male", { exact: true }).check();
+  await expect(page.getByLabel("Male", { exact: true })).toBeChecked();
 
   await page.getByLabel("Sunday").click();
   await page.getByLabel("Monday").click();
