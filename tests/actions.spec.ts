@@ -44,7 +44,7 @@ test("Radio Buttons", async({page}) =>
   await page.waitForTimeout(1000);
 });
 
-test.only("Checkbox test", async ({page}) =>
+test("Checkbox test", async ({page}) =>
 {
   await page.goto("https://testautomationpractice.blogspot.com/");
 
