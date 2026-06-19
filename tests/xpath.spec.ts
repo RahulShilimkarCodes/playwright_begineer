@@ -108,5 +108,19 @@ test("Xpath demo", async ({ page }) => {
   let tableHeaderValues:string[] = await tableHeaders.allTextContents();
   console.log(tableHeaderValues);
 
+
+  const webTable:Locator = await page.locator("//table[@id='taskTable']");
+  await expect(webTable).toHaveAttribute('id','taskTable');
+
+  const webTableHeaderValue:Locator = await page.locator("//tr[@id='headers']/th").first();
+  console.log(await webTableHeaderValue.textContent());
+  await expect(webTableHeaderValue).toHaveText("Name");
+
+  const firstText:string|null = await webTableHeaderValue.textContent();
+  await expect(firstText).toContain("Name");
   
+  const dynamicWebTable:Locator = await page.locator("//tr[@id='headers']/th");
+  await expect(await dynamicWebTable.count()).toBeGreaterThanOrEqual(5);
+  await expect(dynamicWebTable).toHaveCount(5);
+
 });
