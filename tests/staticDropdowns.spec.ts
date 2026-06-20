@@ -139,6 +139,10 @@ test.only("Multi select dropdown", async ({page}) =>
       uniques.add(elements);
     }
   }
+
+  console.log("Duplicates are ", duplicates);
+
+  expect(duplicates.length).toBe(2);
   
 
 
