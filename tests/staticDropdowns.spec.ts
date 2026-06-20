@@ -51,7 +51,7 @@ test("Static single select dropdown", async ({page}) =>
 
 });
 
-test("Multi select dropdown", async ({page}) =>
+test.only("Multi select dropdown", async ({page}) =>
 {
   await page.goto("https://testautomationpractice.blogspot.com/");
 
@@ -100,4 +100,46 @@ test("Multi select dropdown", async ({page}) =>
 
 
   expect(trimmedColorOptions).toContain("Blue");
+
+  //sorting of arrays..
+  const colors:Locator = page.locator("#colors>option");
+
+  const originalColorsList:string[] = await colors.allTextContents();
+
+  const timmedInitialList:string[] = originalColorsList.map(text=>text.trim());
+  //to trim either use map(when storing to new array) or for of(during console.log())
+  
+  const initialList = [...timmedInitialList];
+  const sortedList = [...timmedInitialList].sort();    //Sorts an array in place. This method mutates the array and returns a reference to the same array.
+
+  //since sort is mutable and changes original array as well, we wrtie it using [...] -> spread operator
+
+  console.log("Original List:- ",initialList);
+  console.log("Sorted List ",sortedList);
+
+  expect(initialList).not.toEqual(sortedList);
+
+
+
+  //Dropdown contains duplicate elements or not....
+
+  const allColorElements: Locator = page.locator("#colors>option");
+
+  const colorElementValues:string[] = (await (allColorElements.allTextContents())).map(text=>text.trim());
+
+  const duplicates:string[] = [];
+  const uniques = new Set<string>();
+
+  for(const elements of colorElementValues)
+  {
+    if(uniques.has(elements))
+    {
+      duplicates.push(elements);
+    }else{
+      uniques.add(elements);
+    }
+  }
+  
+
+
 });
