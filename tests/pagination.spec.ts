@@ -67,7 +67,7 @@ test("Filtering logic validation", async ({page})  =>
   await page.waitForTimeout(2000);
 });
 
-test.only("Filtering the username", async({page}) =>
+test("Filtering the username", async({page}) =>
 {
   await page.goto("https://datatables.net/");
   
